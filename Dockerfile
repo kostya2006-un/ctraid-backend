@@ -6,9 +6,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Устанавливаем зависимости системы
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     gcc \
     libpq-dev \
+    dos2unix \
+    gettext \
     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем рабочую директорию
@@ -19,3 +21,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./back .
+
+COPY ./server.dev.sh ./server.dev.sh
+
+RUN chmod +x ./server.dev.sh && dos2unix ./server.dev.sh
