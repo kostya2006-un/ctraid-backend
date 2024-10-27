@@ -30,7 +30,8 @@ class User(AbstractUser):
     is_bot = models.BooleanField(_("Is bot"), default=False)
     date_joined = models.DateTimeField(_("Date joined"), auto_now_add=True)
     username = models.CharField(_("Username"), max_length=255, blank=True, null=True)
-
+    first_name = models.CharField(_("First name"), max_length=255)
+    last_name = models.CharField(_("Last name"), max_length=255, blank=True, null=True)
     # Оставляем поле password для совместимости с админкой
     password = models.CharField(_("password"), max_length=128, null=True, blank=True)
 
